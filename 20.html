@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chúc Mừng 20/10</title>
+    <style>
+      :root {
+        --bg1: #fff0f6;
+        --bg2: #ffd6e8;
+        --accent: #d9006c;
+        --text: #7a1848;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, var(--bg1), var(--bg2));
+        overflow: hidden;
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+      }
+
+      .card {
+        position: absolute;
+        left: 50%;
+        top: 38%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 28px 36px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.45);
+        box-shadow: 0 10px 30px rgba(120, 10, 60, 0.08);
+        backdrop-filter: blur(6px);
+        z-index: 2;
+      }
+
+      h1 {
+        margin: 0 0 10px 0;
+        font-size: 40px;
+        color: var(--accent);
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
+      }
+
+      h2.small {
+        margin: 0;
+        font-size: 18px;
+        color: #b3486a;
+      }
+
+      /* petal CSS */
+      .petal {
+        position: fixed;
+        top: -60px;
+        width: 14px;
+        height: 22px;
+        background: #ff7aa1;
+        border-radius: 50% 50% 0 50%;
+        opacity: 0.9;
+        transform-origin: center;
+        z-index: 1;
+      }
+      @keyframes petalFall {
+        0% {
+          transform: translateY(-120px) rotate(0deg) translateX(0);
+        }
+        50% {
+          transform: translateY(40vh) rotate(120deg) translateX(20px);
+        }
+        100% {
+          transform: translateY(110vh) rotate(360deg) translateX(-10px);
+          opacity: 0.6;
+        }
+      }
+
+      /* butterfly container - sits above petals */
+      #butterfly-wrap {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 5;
+      }
+      svg.butterfly {
+        width: 120px;
+        height: 90px;
+        overflow: visible;
+        filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+      }
+
+      /* wing animations (flap) */
+      .wing-left,
+      .wing-right {
+        transform-origin: 40% 50%;
+        transform-box: fill-box;
+        will-change: transform;
+      }
+      @keyframes flapLeft {
+        0% {
+          transform: rotate(8deg) translateY(0px);
+        }
+        50% {
+          transform: rotate(-24deg) translateY(-6px);
+        }
+        100% {
+          transform: rotate(8deg) translateY(0px);
+        }
+      }
+      @keyframes flapRight {
+        0% {
+          transform: rotate(-8deg) translateY(0px);
+        }
+        50% {
+          transform: rotate(24deg) translateY(-6px);
+        }
+        100% {
+          transform: rotate(-8deg) translateY(0px);
+        }
+      }
+
+      /* small signature */
+      .signature {
+        position: fixed;
+        bottom: 14px;
+        right: 14px;
+        color: #9b476b;
+        font-size: 13px;
+        z-index: 3;
+      }
+
+      /* music button */
+      .audio-btn {
+        position: fixed;
+        bottom: 14px;
+        left: 14px;
+        z-index: 4;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 8px;
+        padding: 8px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+      }
+      .falling-name {
+        position: fixed;
+        top: -50px;
+        font-family: "Great Vibes", cursive;
+        font-size: 42px;
+        opacity: 0;
+        animation: nameFall 6s linear forwards;
+        pointer-events: none;
+        color: #d9006c;
+      }
+      @keyframes nameFall {
+        0% {
+          transform: translateY(-50px) rotate(0deg);
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10</h1>
+      <h2 class="small">
+        Chúc những người phụ nữ luôn hạnh phúc, xinh đẹp và ngập tràn yêu thương
+        💗
+      </h2>
+    </div>
+
+    <!-- petals will be inserted by JS -->
+
+    <!-- butterfly (SVG) -->
+    <div id="butterfly-wrap" aria-hidden="true">
+      <svg
+        class="butterfly"
+        viewBox="0 0 200 150"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- body -->
+        <g id="butterfly-body">
+          <ellipse cx="100" cy="75" rx="6" ry="20" fill="#4b2b2b" />
+        </g>
+        <!-- left wing group -->
+        <g id="left-group" class="wing-left" style="transform-origin: 35% 50%">
+          <path
+            d="M95 60 C55 30, 20 80, 60 102 C40 122, 70 130, 95 100 Z"
+            fill="#ffbfd9"
+            stroke="#c85a82"
+            stroke-opacity="0.6"
+          />
+          <path
+            d="M90 75 C70 60, 60 90, 85 95"
+            fill="none"
+            stroke="#d87a9a"
+            stroke-width="1"
+            stroke-opacity="0.6"
+          />
+        </g>
+        <!-- right wing group -->
+        <g
+          id="right-group"
+          class="wing-right"
+          style="transform-origin: 65% 50%"
+        >
+          <path
+            d="M105 60 C145 30, 180 80, 140 102 C160 122, 130 130, 105 100 Z"
+            fill="#ffdff0"
+            stroke="#c85a82"
+            stroke-opacity="0.6"
+          />
+          <path
+            d="M110 75 C130 60, 140 90, 115 95"
+            fill="none"
+            stroke="#d87a9a"
+            stroke-width="1"
+            stroke-opacity="0.6"
+          />
+        </g>
+      </svg>
+    </div>
+
+    <div class="audio-btn" id="audioBtn">Âm nhạc: Bật</div>
+    <div class="signature">Gửi tặng các bạn nữ — NTT</div>
+
+    <audio id="bgm" loop>
+      <source
+        src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      /* ---------- PETALS (simple, light) ---------- */
+      const PETAL_INTERVAL = 220; // spawn rate ms
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+      function createPetal() {
+        const el = document.createElement("div");
+        el.className = "petal";
+        el.style.left = rand(-5, 105) + "%";
+        const scale = rand(0.7, 1.3);
+        el.style.width = 14 * scale + "px";
+        el.style.height = 22 * scale + "px";
+        el.style.background = Math.random() < 0.6 ? "#ff7aa1" : "#ffd0e0";
+        el.style.opacity = rand(0.6, 1).toFixed(2);
+        const dur = rand(4, 9);
+        el.style.animation = `petalFall ${dur}s linear forwards`;
+        document.body.appendChild(el);
+        // remove after animation
+        setTimeout(() => {
+          el.remove();
+        }, dur * 1000 + 500);
+      }
+      // start
+      const petalTimer = setInterval(createPetal, PETAL_INTERVAL);
+
+      /* ---------- BUTTERFLY: SVG FLAP + WANDER + MOUSE CURIOUS ---------- */
+      (function () {
+        const wrap = document.getElementById("butterfly-wrap");
+        const left = document.getElementById("left-group");
+        const right = document.getElementById("right-group");
+        // flap timing (randomized slightly to feel natural)
+        let flapSpeed = 0.9; // seconds per full flap cycle
+        function setFlap(speed) {
+          left.style.animation = `flapLeft ${speed}s ease-in-out infinite`;
+          right.style.animation = `flapRight ${speed}s ease-in-out infinite`;
+        }
+        setFlap(flapSpeed);
+
+        // position state
+        let x = window.innerWidth * 0.7,
+          y = window.innerHeight * 0.3;
+        let vx = 0,
+          vy = 0;
+        let targetX = x,
+          targetY = y;
+
+        // mouse curiosity
+        let mouseX = null,
+          mouseY = null,
+          mouseTimer = 0;
+        window.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          mouseTimer = 0;
+        });
+        window.addEventListener(
+          "touchmove",
+          (e) => {
+            if (e.touches && e.touches[0]) {
+              mouseX = e.touches[0].clientX;
+              mouseY = e.touches[0].clientY;
+              mouseTimer = 0;
+            }
+          },
+          { passive: true }
+        );
+
+        // wandering target change every few seconds
+        function pickWanderTarget() {
+          targetX = rand(10, window.innerWidth - 10);
+          targetY = rand(10, window.innerHeight - 10);
+          // gentle change flap speed
+          flapSpeed = rand(0.7, 1.1);
+          setFlap(flapSpeed);
+        }
+        pickWanderTarget();
+        setInterval(pickWanderTarget, 3000 + Math.random() * 2000);
+
+        // main animate loop
+        function animate() {
+          // if mouse present and recently moved, be curious and move closer
+          mouseTimer += 1 / 60; // approx seconds
+          let curiosity = 0; // 0..1
+          if (mouseX !== null && mouseTimer < 1.6) {
+            // stronger curiosity when mouse is near
+            const dx = mouseX - x;
+            const dy = mouseY - y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            curiosity = Math.max(0, 1 - dist / 600);
+            // set a temporary target near the mouse (with offset)
+            const ang = Math.atan2(dy, dx);
+            const nearX = mouseX - Math.cos(ang) * 40; // stay slightly offset
+            const nearY = mouseY - Math.sin(ang) * 40;
+            // blend with wander target
+            targetX = targetX * (1 - curiosity) + nearX * curiosity;
+            targetY = targetY * (1 - curiosity) + nearY * curiosity;
+          }
+
+          // simple spring movement toward target
+          const spring = 0.02 + curiosity * 0.06; // quicker when curious
+          vx += (targetX - x) * spring;
+          vy += (targetY - y) * spring;
+          // damping
+          vx *= 0.88;
+          vy *= 0.88;
+          x += vx;
+          y += vy;
+
+          // apply position
+          wrap.style.left = x + "px";
+          wrap.style.top = y + "px";
+
+          // face direction
+          const angle = (Math.atan2(vy, vx) * 180) / Math.PI;
+          wrap.style.transform = `translate(-50%,-50%) rotate(${angle}deg) scale(${
+            1 - Math.min(0.12, Math.abs(vx) / 200)
+          })`;
+
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+      })();
+
+      /* ---------- AUDIO CONTROL ---------- */
+      (function () {
+        const bgm = document.getElementById("bgm");
+        const btn = document.getElementById("audioBtn");
+        let playing = false;
+        function updateBtn() {
+          btn.textContent = "Âm nhạc: " + (playing ? "Bật" : "Tắt");
+        }
+        btn.addEventListener("click", () => {
+          if (!playing) {
+            bgm.play().catch(() => {});
+            playing = true;
+          } else {
+            bgm.pause();
+            playing = false;
+          }
+          updateBtn();
+        });
+        // try autoplay (may be blocked until user interacts)
+        bgm.volume = 0.45;
+        bgm
+          .play()
+          .then(() => {
+            playing = true;
+            updateBtn();
+          })
+          .catch(() => {
+            playing = false;
+            updateBtn();
+          });
+      })();
+
+      // responsive: remove petals on very small screens
+      if (window.innerWidth < 420) {
+        clearInterval(petalTimer);
+      }
+
+      // small accessibility: pause animations if user prefers reduced motion
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (mq.matches) {
+        // stop petals and set butterfly static
+        clearInterval(petalTimer);
+        document.getElementById("left-group").style.animation = "none";
+        document.getElementById("right-group").style.animation = "none";
+      }
+      const names = [
+        "Thu Hà",
+        "Thu Hà",
+        "Thu Hà", // Lặp lại để tăng tần suất
+        "Anh Thư",
+        "Minh Thư",
+        "Thanh Hoa",
+      ];
+      function createName() {
+        const el = document.createElement("div");
+        el.className = "falling-name";
+        el.textContent = names[Math.floor(Math.random() * names.length)];
+        el.style.left = Math.random() * 80 + "vw";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 6000);
+      }
+      setInterval(createName, 4000);
+    </script>
+  </body>
+</html>
